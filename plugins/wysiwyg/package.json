@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "wysiwyg",
-    "icon": "plug",
+    "name": "CKEditor",
+    "icon": "spell-check",
     "description": "CKEditor to rich text fields."
   },
   "dependencies": {

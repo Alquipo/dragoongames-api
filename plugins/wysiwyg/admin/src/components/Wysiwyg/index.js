@@ -42,6 +42,7 @@ const Wysiwyg = ({
   return (
     <div
       style={{
+        marginBottom: "1.6rem",
         fontSize: "1.3rem",
         fontFamily: "Lato",
       }}
@@ -52,7 +53,11 @@ const Wysiwyg = ({
           marginBottom: "1rem",
         }}
       >
-        <Button color="primary" style={{padding: "0px 15px"}}  onClick={handleToggle}>
+        <Button
+          color="primary"
+          onClick={handleToggle}
+          style={{ padding: "0px 15px" }}
+        >
           Add Image
         </Button>
       </div>

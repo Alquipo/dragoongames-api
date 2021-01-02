@@ -1,12 +1,10 @@
-version: "3"
+version: "3.8"
 services:
- 
   postgres:
     image: postgres
     environment:
-      POSTGRES_DB: wonGames 
+      POSTGRES_DB: wonGames
       POSTGRES_USER: wonGames
       POSTGRES_PASSWORD: wonGames123
     ports:
       - "5432:5432"
-

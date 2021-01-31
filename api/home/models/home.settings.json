@@ -16,7 +16,7 @@
       "repeatable": false,
       "component": "page.section"
     },
-    "upcominGames": {
+    "upcomingGames": {
       "type": "component",
       "repeatable": false,
       "component": "page.section"

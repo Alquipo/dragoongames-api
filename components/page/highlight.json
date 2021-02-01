@@ -25,7 +25,7 @@
       "required": true
     },
     "floatImage": {
-      "collection": "file",
+      "model": "file",
       "via": "related",
       "allowedTypes": [
         "images"

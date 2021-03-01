@@ -1020,6 +1020,81 @@ ALTER SEQUENCE public.publishers_id_seq OWNED BY public.publishers.id;
 
 
 --
+-- Name: recommendeds; Type: TABLE; Schema: public; Owner: wonGames
+--
+
+CREATE TABLE public.recommendeds (
+    id integer NOT NULL,
+    created_by integer,
+    updated_by integer,
+    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.recommendeds OWNER TO "wonGames";
+
+--
+-- Name: recommendeds_components; Type: TABLE; Schema: public; Owner: wonGames
+--
+
+CREATE TABLE public.recommendeds_components (
+    id integer NOT NULL,
+    field character varying(255) NOT NULL,
+    "order" integer NOT NULL,
+    component_type character varying(255) NOT NULL,
+    component_id integer NOT NULL,
+    recommended_id integer NOT NULL
+);
+
+
+ALTER TABLE public.recommendeds_components OWNER TO "wonGames";
+
+--
+-- Name: recommendeds_components_id_seq; Type: SEQUENCE; Schema: public; Owner: wonGames
+--
+
+CREATE SEQUENCE public.recommendeds_components_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.recommendeds_components_id_seq OWNER TO "wonGames";
+
+--
+-- Name: recommendeds_components_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: wonGames
+--
+
+ALTER SEQUENCE public.recommendeds_components_id_seq OWNED BY public.recommendeds_components.id;
+
+
+--
+-- Name: recommendeds_id_seq; Type: SEQUENCE; Schema: public; Owner: wonGames
+--
+
+CREATE SEQUENCE public.recommendeds_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.recommendeds_id_seq OWNER TO "wonGames";
+
+--
+-- Name: recommendeds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: wonGames
+--
+
+ALTER SEQUENCE public.recommendeds_id_seq OWNED BY public.recommendeds.id;
+
+
+--
 -- Name: strapi_administrator; Type: TABLE; Schema: public; Owner: wonGames
 --
 
@@ -1571,6 +1646,20 @@ ALTER TABLE ONLY public.platforms ALTER COLUMN id SET DEFAULT nextval('public.pl
 --
 
 ALTER TABLE ONLY public.publishers ALTER COLUMN id SET DEFAULT nextval('public.publishers_id_seq'::regclass);
+
+
+--
+-- Name: recommendeds id; Type: DEFAULT; Schema: public; Owner: wonGames
+--
+
+ALTER TABLE ONLY public.recommendeds ALTER COLUMN id SET DEFAULT nextval('public.recommendeds_id_seq'::regclass);
+
+
+--
+-- Name: recommendeds_components id; Type: DEFAULT; Schema: public; Owner: wonGames
+--
+
+ALTER TABLE ONLY public.recommendeds_components ALTER COLUMN id SET DEFAULT nextval('public.recommendeds_components_id_seq'::regclass);
 
 
 --
@@ -2663,6 +2752,7 @@ COPY public.components_page_highlights (id, title, subtitle, "buttonLabel", "but
 6	Borderlands	Borderlands	Buy now	sadasd	right
 2	CS:GO	The most classic fps game!	Download now	http://localhost:3000/games	left
 3	Red Dead is back!	Come see John's new adventures	Buy now	http://localhost:3000/games	right
+7	Read Dead is Back!	Come see John's new adventure	Buy now	ht	right
 \.
 
 
@@ -2672,6 +2762,7 @@ COPY public.components_page_highlights (id, title, subtitle, "buttonLabel", "but
 
 COPY public.components_page_popular_games (id, title) FROM stdin;
 1	Most Popular Games
+2	You may like these games
 \.
 
 
@@ -2688,6 +2779,15 @@ COPY public.components_page_popular_games__games (id, components_page_popular_ga
 6	1	114
 7	1	265
 8	1	347
+9	2	101
+10	2	102
+11	2	103
+12	2	106
+13	2	126
+14	2	135
+15	2	145
+16	2	328
+17	2	272
 \.
 
 
@@ -2697,6 +2797,7 @@ COPY public.components_page_popular_games__games (id, components_page_popular_ga
 
 COPY public.components_page_popular_games_components (id, field, "order", component_type, component_id, components_page_popular_game_id) FROM stdin;
 2	highlight	1	components_page_highlights	3	1
+3	highlight	1	components_page_highlights	7	2
 \.
 
 
@@ -2738,12 +2839,12 @@ COPY public.components_page_sections_components (id, field, "order", component_t
 --
 
 COPY public.core_store (id, key, value, type, environment, tag) FROM stdin;
-6	model_def_plugins::users-permissions.permission	{"uid":"plugins::users-permissions.permission","collectionName":"users-permissions_permission","kind":"collectionType","info":{"name":"permission","description":""},"options":{"timestamps":false},"attributes":{"type":{"type":"string","required":true,"configurable":false},"controller":{"type":"string","required":true,"configurable":false},"action":{"type":"string","required":true,"configurable":false},"enabled":{"type":"boolean","required":true,"configurable":false},"policy":{"type":"string","configurable":false},"role":{"model":"role","via":"permissions","plugin":"users-permissions","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
-35	plugin_content_manager_configuration_components::page.ribbon	{"uid":"page.ribbon","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"text","defaultSortBy":"text","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":false,"sortable":false}},"text":{"edit":{"label":"Text","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Text","searchable":true,"sortable":true}},"color":{"edit":{"label":"Color","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Color","searchable":true,"sortable":true}},"size":{"edit":{"label":"Size","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Size","searchable":true,"sortable":true}}},"layouts":{"list":["id","text","color","size"],"edit":[[{"name":"text","size":6},{"name":"color","size":6}],[{"name":"size","size":6}]],"editRelations":[]},"isComponent":true}	object		
 8	model_def_plugins::users-permissions.user	{"uid":"plugins::users-permissions.user","collectionName":"users-permissions_user","kind":"collectionType","info":{"name":"user","description":""},"options":{"draftAndPublish":false,"timestamps":["created_at","updated_at"]},"attributes":{"username":{"type":"string","minLength":3,"unique":true,"configurable":false,"required":true},"email":{"type":"email","minLength":6,"configurable":false,"required":true},"provider":{"type":"string","configurable":false},"password":{"type":"password","minLength":6,"configurable":false,"private":true},"resetPasswordToken":{"type":"string","configurable":false,"private":true},"confirmationToken":{"type":"string","configurable":false,"private":true},"confirmed":{"type":"boolean","default":false,"configurable":false},"blocked":{"type":"boolean","default":false,"configurable":false},"role":{"model":"role","via":"users","plugin":"users-permissions","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
-7	model_def_plugins::users-permissions.role	{"uid":"plugins::users-permissions.role","collectionName":"users-permissions_role","kind":"collectionType","info":{"name":"role","description":""},"options":{"timestamps":false},"attributes":{"name":{"type":"string","minLength":3,"required":true,"configurable":false},"description":{"type":"string","configurable":false},"type":{"type":"string","unique":true,"configurable":false},"permissions":{"collection":"permission","via":"role","plugin":"users-permissions","configurable":false,"isVirtual":true},"users":{"collection":"user","via":"role","configurable":false,"plugin":"users-permissions","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
-43	plugin_content_manager_configuration_components::page.section	{"uid":"page.section","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"title","defaultSortBy":"title","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":false,"sortable":false}},"title":{"edit":{"label":"Title","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Title","searchable":true,"sortable":true}},"highlight":{"edit":{"label":"Highlight","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Highlight","searchable":false,"sortable":false}}},"layouts":{"list":["id","title"],"edit":[[{"name":"title","size":6}],[{"name":"highlight","size":12}]],"editRelations":[]},"isComponent":true}	object		
+35	plugin_content_manager_configuration_components::page.ribbon	{"uid":"page.ribbon","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"text","defaultSortBy":"text","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":false,"sortable":false}},"text":{"edit":{"label":"Text","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Text","searchable":true,"sortable":true}},"color":{"edit":{"label":"Color","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Color","searchable":true,"sortable":true}},"size":{"edit":{"label":"Size","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Size","searchable":true,"sortable":true}}},"layouts":{"list":["id","text","color","size"],"edit":[[{"name":"text","size":6},{"name":"color","size":6}],[{"name":"size","size":6}]],"editRelations":[]},"isComponent":true}	object		
 1	model_def_strapi::core-store	{"uid":"strapi::core-store","collectionName":"core_store","info":{"name":"core_store","description":""},"options":{"timestamps":false},"attributes":{"key":{"type":"string"},"value":{"type":"text"},"type":{"type":"string"},"environment":{"type":"string"},"tag":{"type":"string"}}}	object	\N	\N
+6	model_def_plugins::users-permissions.permission	{"uid":"plugins::users-permissions.permission","collectionName":"users-permissions_permission","kind":"collectionType","info":{"name":"permission","description":""},"options":{"timestamps":false},"attributes":{"type":{"type":"string","required":true,"configurable":false},"controller":{"type":"string","required":true,"configurable":false},"action":{"type":"string","required":true,"configurable":false},"enabled":{"type":"boolean","required":true,"configurable":false},"policy":{"type":"string","configurable":false},"role":{"model":"role","via":"permissions","plugin":"users-permissions","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
+43	plugin_content_manager_configuration_components::page.section	{"uid":"page.section","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"title","defaultSortBy":"title","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":false,"sortable":false}},"title":{"edit":{"label":"Title","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Title","searchable":true,"sortable":true}},"highlight":{"edit":{"label":"Highlight","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Highlight","searchable":false,"sortable":false}}},"layouts":{"list":["id","title"],"edit":[[{"name":"title","size":6}],[{"name":"highlight","size":12}]],"editRelations":[]},"isComponent":true}	object		
+7	model_def_plugins::users-permissions.role	{"uid":"plugins::users-permissions.role","collectionName":"users-permissions_role","kind":"collectionType","info":{"name":"role","description":""},"options":{"timestamps":false},"attributes":{"name":{"type":"string","minLength":3,"required":true,"configurable":false},"description":{"type":"string","configurable":false},"type":{"type":"string","unique":true,"configurable":false},"permissions":{"collection":"permission","via":"role","plugin":"users-permissions","configurable":false,"isVirtual":true},"users":{"collection":"user","via":"role","configurable":false,"plugin":"users-permissions","isVirtual":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
 2	model_def_strapi::webhooks	{"uid":"strapi::webhooks","collectionName":"strapi_webhooks","info":{"name":"Strapi webhooks","description":""},"options":{"timestamps":false},"attributes":{"name":{"type":"string"},"url":{"type":"text"},"headers":{"type":"json"},"events":{"type":"json"},"enabled":{"type":"boolean"}}}	object	\N	\N
 10	plugin_users-permissions_grant	{"email":{"enabled":true,"icon":"envelope"},"discord":{"enabled":false,"icon":"discord","key":"","secret":"","callback":"/auth/discord/callback","scope":["identify","email"]},"facebook":{"enabled":false,"icon":"facebook-square","key":"","secret":"","callback":"/auth/facebook/callback","scope":["email"]},"google":{"enabled":false,"icon":"google","key":"","secret":"","callback":"/auth/google/callback","scope":["email"]},"github":{"enabled":false,"icon":"github","key":"","secret":"","callback":"/auth/github/callback","scope":["user","user:email"]},"microsoft":{"enabled":false,"icon":"windows","key":"","secret":"","callback":"/auth/microsoft/callback","scope":["user.read"]},"twitter":{"enabled":false,"icon":"twitter","key":"","secret":"","callback":"/auth/twitter/callback"},"instagram":{"enabled":false,"icon":"instagram","key":"","secret":"","callback":"/auth/instagram/callback"},"vk":{"enabled":false,"icon":"vk","key":"","secret":"","callback":"/auth/vk/callback","scope":["email"]},"twitch":{"enabled":false,"icon":"twitch","key":"","secret":"","callback":"/auth/twitch/callback","scope":["user:read:email"]},"linkedin":{"enabled":false,"icon":"linkedin","key":"","secret":"","callback":"/auth/linkedin/callback","scope":["r_liteprofile","r_emailaddress"]},"cognito":{"enabled":false,"icon":"aws","key":"","secret":"","subdomain":"my.subdomain.com","callback":"/auth/cognito/callback","scope":["email","openid","profile"]}}	object		
 11	plugin_upload_settings	{"sizeOptimization":true,"responsiveDimensions":true}	object	development	
@@ -2761,27 +2862,29 @@ COPY public.core_store (id, key, value, type, environment, tag) FROM stdin;
 3	model_def_strapi::permission	{"uid":"strapi::permission","collectionName":"strapi_permission","kind":"collectionType","info":{"name":"Permission","description":""},"options":{"timestamps":["created_at","updated_at"]},"attributes":{"action":{"type":"string","minLength":1,"configurable":false,"required":true},"subject":{"type":"string","minLength":1,"configurable":false,"required":false},"fields":{"type":"json","configurable":false,"required":false,"default":[]},"conditions":{"type":"json","configurable":false,"required":false,"default":[]},"role":{"configurable":false,"model":"role","plugin":"admin"}}}	object	\N	\N
 26	plugin_content_manager_configuration_content_types::application::developer.developer	{"uid":"application::developer.developer","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"slug":{"edit":{"label":"Slug","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Slug","searchable":true,"sortable":true}},"games":{"edit":{"label":"Games","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Games","searchable":false,"sortable":false}},"published_at":{"edit":{"label":"Published_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Published_at","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","slug","published_at"],"edit":[[{"name":"name","size":6},{"name":"slug","size":6}]],"editRelations":["games"]}}	object		
 41	plugin_content_manager_configuration_components::page.highlight	{"uid":"page.highlight","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"title","defaultSortBy":"title","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":false,"sortable":false}},"title":{"edit":{"label":"Title","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Title","searchable":true,"sortable":true}},"subtitle":{"edit":{"label":"Subtitle","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Subtitle","searchable":true,"sortable":true}},"background":{"edit":{"label":"Background","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Background","searchable":false,"sortable":false}},"floatImage":{"edit":{"label":"FloatImage","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"FloatImage","searchable":false,"sortable":false}},"buttonLabel":{"edit":{"label":"ButtonLabel","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"ButtonLabel","searchable":true,"sortable":true}},"buttonLink":{"edit":{"label":"ButtonLink","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"ButtonLink","searchable":true,"sortable":true}},"alignment":{"edit":{"label":"Alignment","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Alignment","searchable":true,"sortable":true}}},"layouts":{"list":["id","title","subtitle","background"],"edit":[[{"name":"title","size":6},{"name":"subtitle","size":6}],[{"name":"background","size":6},{"name":"floatImage","size":6}],[{"name":"buttonLabel","size":6},{"name":"buttonLink","size":6}],[{"name":"alignment","size":6}]],"editRelations":[]},"isComponent":true}	object		
+40	model_def_application::home.home	{"uid":"application::home.home","collectionName":"homes","kind":"singleType","info":{"name":"Home","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"newGames":{"type":"component","repeatable":false,"component":"page.section"},"upcomingGames":{"type":"component","repeatable":false,"component":"page.section"},"freeGames":{"type":"component","repeatable":false,"component":"page.section"},"popularGames":{"type":"component","repeatable":false,"component":"page.popular-games"},"published_at":{"type":"datetime","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
 25	model_def_application::developer.developer	{"uid":"application::developer.developer","collectionName":"developers","kind":"collectionType","info":{"name":"developer"},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"name":{"type":"string","unique":true,"required":true},"slug":{"type":"uid","targetField":"name","required":true},"games":{"via":"developers","collection":"game","attribute":"game","column":"id","isVirtual":true},"published_at":{"type":"datetime","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
 27	model_def_application::publisher.publisher	{"uid":"application::publisher.publisher","collectionName":"publishers","kind":"collectionType","info":{"name":"publisher"},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"name":{"type":"string","required":true,"unique":true},"slug":{"type":"uid","targetField":"name","required":true},"games":{"via":"publisher","collection":"game","isVirtual":true},"published_at":{"type":"datetime","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
-40	model_def_application::home.home	{"uid":"application::home.home","collectionName":"homes","kind":"singleType","info":{"name":"Home","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"newGames":{"type":"component","repeatable":false,"component":"page.section"},"upcomingGames":{"type":"component","repeatable":false,"component":"page.section"},"freeGames":{"type":"component","repeatable":false,"component":"page.section"},"popularGames":{"type":"component","repeatable":false,"component":"page.popular-games"},"published_at":{"type":"datetime","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
 28	plugin_content_manager_configuration_content_types::application::publisher.publisher	{"uid":"application::publisher.publisher","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"slug":{"edit":{"label":"Slug","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Slug","searchable":true,"sortable":true}},"games":{"edit":{"label":"Games","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Games","searchable":false,"sortable":false}},"published_at":{"edit":{"label":"Published_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Published_at","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","slug","published_at"],"edit":[[{"name":"name","size":6},{"name":"slug","size":6}]],"editRelations":["games"]}}	object		
 30	plugin_content_manager_configuration_content_types::application::game.game	{"uid":"application::game.game","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"platforms":{"edit":{"label":"Platforms","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Platforms","searchable":false,"sortable":false}},"published_at":{"edit":{"label":"Published_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Published_at","searchable":true,"sortable":true}},"release_date":{"edit":{"label":"Release_date","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Release_date","searchable":true,"sortable":true}},"price":{"edit":{"label":"Price","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Price","searchable":true,"sortable":true}},"developers":{"edit":{"label":"Developers","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Developers","searchable":false,"sortable":false}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"slug":{"edit":{"label":"Slug","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Slug","searchable":true,"sortable":true}},"gallery":{"edit":{"label":"Gallery","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Gallery","searchable":false,"sortable":false}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}},"cover":{"edit":{"label":"Cover","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Cover","searchable":false,"sortable":false}},"short_description":{"edit":{"label":"Short_description","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Short_description","searchable":true,"sortable":true}},"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"publisher":{"edit":{"label":"Publisher","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Publisher","searchable":false,"sortable":false}},"categories":{"edit":{"label":"Categories","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Categories","searchable":false,"sortable":false}},"description":{"edit":{"label":"Description","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Description","searchable":false,"sortable":false}},"rating":{"edit":{"label":"Rating","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Rating","searchable":true,"sortable":true}}},"layouts":{"edit":[[{"name":"name","size":6},{"name":"slug","size":6}],[{"name":"short_description","size":6}],[{"name":"description","size":12}],[{"name":"price","size":4},{"name":"release_date","size":4}],[{"name":"rating","size":6},{"name":"cover","size":6}],[{"name":"gallery","size":6}]],"editRelations":["categories","developers","platforms","publisher"],"list":["id","name","slug","short_description"]}}	object		
 24	plugin_content_manager_configuration_content_types::application::platform.platform	{"uid":"application::platform.platform","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"name":{"edit":{"label":"Name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Name","searchable":true,"sortable":true}},"slug":{"edit":{"label":"Slug","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Slug","searchable":true,"sortable":true}},"games":{"edit":{"label":"Games","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Games","searchable":false,"sortable":false}},"published_at":{"edit":{"label":"Published_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Published_at","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","slug","published_at"],"edit":[[{"name":"name","size":6},{"name":"slug","size":6}]],"editRelations":["games"]}}	object		
-31	model_def_page.button	{"uid":"page.button","collectionName":"components_page_buttons","info":{"name":"button","icon":"link"},"options":{"timestamps":false},"attributes":{"label":{"type":"string","required":true,"default":"Buy now"},"link":{"type":"string","required":true}}}	object	\N	\N
-34	plugin_content_manager_configuration_components::page.button	{"uid":"page.button","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"label","defaultSortBy":"label","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":false,"sortable":false}},"label":{"edit":{"label":"Label","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Label","searchable":true,"sortable":true}},"link":{"edit":{"label":"Link","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Link","searchable":true,"sortable":true}}},"layouts":{"list":["id","label","link"],"edit":[[{"name":"label","size":6},{"name":"link","size":6}]],"editRelations":[]},"isComponent":true}	object		
 33	model_def_application::banner.banner	{"uid":"application::banner.banner","collectionName":"banners","kind":"collectionType","info":{"name":"banner"},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"image":{"model":"file","via":"related","allowedTypes":["images"],"plugin":"upload","required":true},"title":{"type":"string","required":true},"subtitle":{"type":"text","required":true,"maxLength":150},"button":{"type":"component","repeatable":false,"component":"page.button"},"ribbon":{"type":"component","repeatable":false,"component":"page.ribbon"},"published_at":{"type":"datetime","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
-23	model_def_application::platform.platform	{"uid":"application::platform.platform","collectionName":"platforms","kind":"collectionType","info":{"name":"platform"},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"name":{"type":"string","required":true,"unique":true},"slug":{"type":"uid","targetField":"name","required":true},"games":{"via":"platforms","collection":"game","attribute":"game","column":"id","isVirtual":true},"published_at":{"type":"datetime","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
+34	plugin_content_manager_configuration_components::page.button	{"uid":"page.button","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"label","defaultSortBy":"label","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":false,"sortable":false}},"label":{"edit":{"label":"Label","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Label","searchable":true,"sortable":true}},"link":{"edit":{"label":"Link","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Link","searchable":true,"sortable":true}}},"layouts":{"list":["id","label","link"],"edit":[[{"name":"label","size":6},{"name":"link","size":6}]],"editRelations":[]},"isComponent":true}	object		
+31	model_def_page.button	{"uid":"page.button","collectionName":"components_page_buttons","info":{"name":"button","icon":"link"},"options":{"timestamps":false},"attributes":{"label":{"type":"string","required":true,"default":"Buy now"},"link":{"type":"string","required":true}}}	object	\N	\N
 32	model_def_page.ribbon	{"uid":"page.ribbon","collectionName":"components_page_ribbons","info":{"name":"ribbon","icon":"ribbon"},"options":{"timestamps":false},"attributes":{"text":{"type":"string","maxLength":30},"color":{"type":"enumeration","enum":["primary","secondary"],"default":"primary"},"size":{"type":"enumeration","enum":["small","normal"],"default":"normal"}}}	object	\N	\N
-39	model_def_page.section	{"uid":"page.section","collectionName":"components_page_sections","info":{"name":"section","icon":"align-justify","description":""},"options":{"timestamps":false},"attributes":{"title":{"type":"string","required":true},"highlight":{"type":"component","repeatable":false,"component":"page.highlight"}}}	object	\N	\N
+23	model_def_application::platform.platform	{"uid":"application::platform.platform","collectionName":"platforms","kind":"collectionType","info":{"name":"platform"},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"name":{"type":"string","required":true,"unique":true},"slug":{"type":"uid","targetField":"name","required":true},"games":{"via":"platforms","collection":"game","attribute":"game","column":"id","isVirtual":true},"published_at":{"type":"datetime","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
 42	plugin_content_manager_configuration_components::page.popular-games	{"uid":"page.popular-games","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"title","defaultSortBy":"title","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":false,"sortable":false}},"title":{"edit":{"label":"Title","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Title","searchable":true,"sortable":true}},"highlight":{"edit":{"label":"Highlight","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Highlight","searchable":false,"sortable":false}},"games":{"edit":{"label":"Games","description":"","placeholder":"","visible":true,"editable":true,"mainField":"name"},"list":{"label":"Games","searchable":false,"sortable":false}}},"layouts":{"list":["id","title","games"],"edit":[[{"name":"title","size":6}],[{"name":"highlight","size":12}],[{"name":"games","size":6}]],"editRelations":[]},"isComponent":true}	object		
 38	model_def_page.popular-games	{"uid":"page.popular-games","collectionName":"components_page_popular_games","info":{"name":"popularGames","icon":"star-of-life","description":""},"options":{"timestamps":false},"attributes":{"title":{"type":"string","required":true},"highlight":{"type":"component","repeatable":false,"component":"page.highlight"},"games":{"collection":"game","attribute":"game","column":"id","isVirtual":true}}}	object	\N	\N
+39	model_def_page.section	{"uid":"page.section","collectionName":"components_page_sections","info":{"name":"section","icon":"align-justify","description":""},"options":{"timestamps":false},"attributes":{"title":{"type":"string","required":true},"highlight":{"type":"component","repeatable":false,"component":"page.highlight"}}}	object	\N	\N
+37	model_def_page.highlight	{"uid":"page.highlight","collectionName":"components_page_highlights","info":{"name":"highlight","icon":"star","description":""},"options":{"timestamps":false},"attributes":{"title":{"type":"string","required":true},"subtitle":{"type":"text","required":true},"background":{"model":"file","via":"related","allowedTypes":["images"],"plugin":"upload","required":true},"floatImage":{"model":"file","via":"related","allowedTypes":["images"],"plugin":"upload","required":false},"buttonLabel":{"type":"string","required":true},"buttonLink":{"type":"string","required":true},"alignment":{"type":"enumeration","enum":["right","left"],"default":"right"}}}	object	\N	\N
 21	model_def_application::category.category	{"uid":"application::category.category","collectionName":"categories","kind":"collectionType","info":{"name":"category"},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"name":{"type":"string","required":true,"unique":true},"slug":{"type":"uid","targetField":"name","required":true},"games":{"via":"categories","collection":"game","attribute":"game","column":"id","isVirtual":true},"published_at":{"type":"datetime","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
 4	model_def_strapi::role	{"uid":"strapi::role","collectionName":"strapi_role","kind":"collectionType","info":{"name":"Role","description":""},"options":{"timestamps":["created_at","updated_at"]},"attributes":{"name":{"type":"string","minLength":1,"unique":true,"configurable":false,"required":true},"code":{"type":"string","minLength":1,"unique":true,"configurable":false,"required":true},"description":{"type":"string","configurable":false},"users":{"configurable":false,"collection":"user","via":"roles","plugin":"admin","attribute":"user","column":"id","isVirtual":true},"permissions":{"configurable":false,"plugin":"admin","collection":"permission","via":"role","isVirtual":true}}}	object	\N	\N
 44	plugin_content_manager_configuration_content_types::application::home.home	{"uid":"application::home.home","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"id","defaultSortBy":"id","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"newGames":{"edit":{"label":"NewGames","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"NewGames","searchable":false,"sortable":false}},"upcomingGames":{"edit":{"label":"UpcomingGames","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"UpcomingGames","searchable":false,"sortable":false}},"freeGames":{"edit":{"label":"FreeGames","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"FreeGames","searchable":false,"sortable":false}},"popularGames":{"edit":{"label":"PopularGames","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"PopularGames","searchable":false,"sortable":false}},"published_at":{"edit":{"label":"Published_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Published_at","searchable":true,"sortable":true}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","published_at","created_at","updated_at"],"edit":[[{"name":"newGames","size":12}],[{"name":"popularGames","size":12}],[{"name":"freeGames","size":12}],[{"name":"upcomingGames","size":12}]],"editRelations":[]}}	object		
-37	model_def_page.highlight	{"uid":"page.highlight","collectionName":"components_page_highlights","info":{"name":"highlight","icon":"star","description":""},"options":{"timestamps":false},"attributes":{"title":{"type":"string","required":true},"subtitle":{"type":"text","required":true},"background":{"model":"file","via":"related","allowedTypes":["images"],"plugin":"upload","required":true},"floatImage":{"model":"file","via":"related","allowedTypes":["images"],"plugin":"upload","required":false},"buttonLabel":{"type":"string","required":true},"buttonLink":{"type":"string","required":true},"alignment":{"type":"enumeration","enum":["right","left"],"default":"right"}}}	object	\N	\N
 29	model_def_application::game.game	{"uid":"application::game.game","collectionName":"games","kind":"collectionType","info":{"name":"game","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":true},"attributes":{"name":{"type":"string","required":true,"unique":true},"slug":{"type":"uid","targetField":"name","required":true},"short_description":{"type":"text","required":true,"maxLength":160},"price":{"type":"decimal","required":true,"default":0},"release_date":{"type":"date"},"rating":{"type":"enumeration","enum":["BR0","BR10","BR12","BR14","BR16","BR18"],"required":false},"cover":{"model":"file","via":"related","allowedTypes":["images"],"plugin":"upload","required":false},"gallery":{"collection":"file","via":"related","allowedTypes":["images"],"plugin":"upload","required":false},"categories":{"collection":"category","via":"games","dominant":true,"attribute":"category","column":"id","isVirtual":true},"developers":{"collection":"developer","via":"games","dominant":true,"attribute":"developer","column":"id","isVirtual":true},"platforms":{"collection":"platform","via":"games","dominant":true,"attribute":"platform","column":"id","isVirtual":true},"publisher":{"model":"publisher","via":"games"},"description":{"type":"richtext","required":true},"published_at":{"type":"datetime","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
+45	model_def_application::recommended.recommended	{"uid":"application::recommended.recommended","collectionName":"recommendeds","kind":"singleType","info":{"name":"recommended","description":""},"options":{"increments":true,"timestamps":["created_at","updated_at"],"draftAndPublish":false},"attributes":{"section":{"type":"component","repeatable":false,"component":"page.popular-games","required":true},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
 5	model_def_strapi::user	{"uid":"strapi::user","collectionName":"strapi_administrator","kind":"collectionType","info":{"name":"User","description":""},"options":{"timestamps":false},"attributes":{"firstname":{"type":"string","unique":false,"minLength":1,"configurable":false,"required":false},"lastname":{"type":"string","unique":false,"minLength":1,"configurable":false,"required":false},"username":{"type":"string","unique":false,"configurable":false,"required":false},"email":{"type":"email","minLength":6,"configurable":false,"required":true,"unique":true,"private":true},"password":{"type":"password","minLength":6,"configurable":false,"required":false,"private":true},"resetPasswordToken":{"type":"string","configurable":false,"private":true},"registrationToken":{"type":"string","configurable":false,"private":true},"isActive":{"type":"boolean","default":false,"configurable":false,"private":true},"roles":{"collection":"role","collectionName":"strapi_users_roles","via":"users","dominant":true,"plugin":"admin","configurable":false,"private":true,"attribute":"role","column":"id","isVirtual":true},"blocked":{"type":"boolean","default":false,"configurable":false,"private":true}}}	object	\N	\N
 9	model_def_plugins::upload.file	{"uid":"plugins::upload.file","collectionName":"upload_file","kind":"collectionType","info":{"name":"file","description":""},"options":{"timestamps":["created_at","updated_at"]},"attributes":{"name":{"type":"string","configurable":false,"required":true},"alternativeText":{"type":"string","configurable":false},"caption":{"type":"string","configurable":false},"width":{"type":"integer","configurable":false},"height":{"type":"integer","configurable":false},"formats":{"type":"json","configurable":false},"hash":{"type":"string","configurable":false,"required":true},"ext":{"type":"string","configurable":false},"mime":{"type":"string","configurable":false,"required":true},"size":{"type":"decimal","configurable":false,"required":true},"url":{"type":"string","configurable":false,"required":true},"previewUrl":{"type":"string","configurable":false},"provider":{"type":"string","configurable":false,"required":true},"provider_metadata":{"type":"json","configurable":false},"related":{"collection":"*","filter":"field","configurable":false},"created_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true},"updated_by":{"model":"user","plugin":"admin","configurable":false,"writable":false,"private":true}}}	object	\N	\N
+46	plugin_content_manager_configuration_content_types::application::recommended.recommended	{"uid":"application::recommended.recommended","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"id","defaultSortBy":"id","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"Id","searchable":true,"sortable":true}},"section":{"edit":{"label":"Section","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Section","searchable":false,"sortable":false}},"created_at":{"edit":{"label":"Created_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Created_at","searchable":true,"sortable":true}},"updated_at":{"edit":{"label":"Updated_at","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"Updated_at","searchable":true,"sortable":true}}},"layouts":{"list":["id","created_at","updated_at"],"editRelations":[],"edit":[[{"name":"section","size":12}]]}}	object		
 \.
 
 
@@ -4258,6 +4361,24 @@ COPY public.publishers (id, name, slug, published_at, created_by, updated_by, cr
 
 
 --
+-- Data for Name: recommendeds; Type: TABLE DATA; Schema: public; Owner: wonGames
+--
+
+COPY public.recommendeds (id, created_by, updated_by, created_at, updated_at) FROM stdin;
+1	1	1	2021-03-01 08:41:25.504+00	2021-03-01 08:44:32.452+00
+\.
+
+
+--
+-- Data for Name: recommendeds_components; Type: TABLE DATA; Schema: public; Owner: wonGames
+--
+
+COPY public.recommendeds_components (id, field, "order", component_type, component_id, recommended_id) FROM stdin;
+1	section	1	components_page_popular_games	2	1
+\.
+
+
+--
 -- Data for Name: strapi_administrator; Type: TABLE DATA; Schema: public; Owner: wonGames
 --
 
@@ -4352,9 +4473,13 @@ COPY public.strapi_permission (id, action, subject, fields, conditions, role, cr
 94	plugins::content-manager.explorer.publish	application::banner.banner	\N	[]	1	2021-01-31 05:57:29.151+00	2021-01-31 05:57:29.163+00
 98	plugins::content-manager.explorer.delete	application::home.home	\N	[]	1	2021-01-31 20:52:23.184+00	2021-01-31 20:52:23.194+00
 99	plugins::content-manager.explorer.publish	application::home.home	\N	[]	1	2021-01-31 20:52:23.184+00	2021-01-31 20:52:23.196+00
+106	plugins::content-manager.explorer.update	application::recommended.recommended	["section.title", "section.highlight.title", "section.highlight.subtitle", "section.highlight.background", "section.highlight.floatImage", "section.highlight.buttonLabel", "section.highlight.buttonLink", "section.highlight.alignment", "section.games"]	[]	1	2021-03-01 08:31:25.859+00	2021-03-01 08:31:25.87+00
 100	plugins::content-manager.explorer.create	application::home.home	["newGames.title", "newGames.highlight.title", "newGames.highlight.subtitle", "newGames.highlight.background", "newGames.highlight.floatImage", "newGames.highlight.buttonLabel", "newGames.highlight.buttonLink", "newGames.highlight.alignment", "upcomingGames.title", "upcomingGames.highlight.title", "upcomingGames.highlight.subtitle", "upcomingGames.highlight.background", "upcomingGames.highlight.floatImage", "upcomingGames.highlight.buttonLabel", "upcomingGames.highlight.buttonLink", "upcomingGames.highlight.alignment", "freeGames.title", "freeGames.highlight.title", "freeGames.highlight.subtitle", "freeGames.highlight.background", "freeGames.highlight.floatImage", "freeGames.highlight.buttonLabel", "freeGames.highlight.buttonLink", "freeGames.highlight.alignment", "popularGames.title", "popularGames.highlight.title", "popularGames.highlight.subtitle", "popularGames.highlight.background", "popularGames.highlight.floatImage", "popularGames.highlight.buttonLabel", "popularGames.highlight.buttonLink", "popularGames.highlight.alignment", "popularGames.games"]	[]	1	2021-01-31 22:10:22.355+00	2021-01-31 22:10:22.366+00
 102	plugins::content-manager.explorer.update	application::home.home	["newGames.title", "newGames.highlight.title", "newGames.highlight.subtitle", "newGames.highlight.background", "newGames.highlight.floatImage", "newGames.highlight.buttonLabel", "newGames.highlight.buttonLink", "newGames.highlight.alignment", "upcomingGames.title", "upcomingGames.highlight.title", "upcomingGames.highlight.subtitle", "upcomingGames.highlight.background", "upcomingGames.highlight.floatImage", "upcomingGames.highlight.buttonLabel", "upcomingGames.highlight.buttonLink", "upcomingGames.highlight.alignment", "freeGames.title", "freeGames.highlight.title", "freeGames.highlight.subtitle", "freeGames.highlight.background", "freeGames.highlight.floatImage", "freeGames.highlight.buttonLabel", "freeGames.highlight.buttonLink", "freeGames.highlight.alignment", "popularGames.title", "popularGames.highlight.title", "popularGames.highlight.subtitle", "popularGames.highlight.background", "popularGames.highlight.floatImage", "popularGames.highlight.buttonLabel", "popularGames.highlight.buttonLink", "popularGames.highlight.alignment", "popularGames.games"]	[]	1	2021-01-31 22:10:22.357+00	2021-01-31 22:10:22.367+00
 101	plugins::content-manager.explorer.read	application::home.home	["newGames.title", "newGames.highlight.title", "newGames.highlight.subtitle", "newGames.highlight.background", "newGames.highlight.floatImage", "newGames.highlight.buttonLabel", "newGames.highlight.buttonLink", "newGames.highlight.alignment", "upcomingGames.title", "upcomingGames.highlight.title", "upcomingGames.highlight.subtitle", "upcomingGames.highlight.background", "upcomingGames.highlight.floatImage", "upcomingGames.highlight.buttonLabel", "upcomingGames.highlight.buttonLink", "upcomingGames.highlight.alignment", "freeGames.title", "freeGames.highlight.title", "freeGames.highlight.subtitle", "freeGames.highlight.background", "freeGames.highlight.floatImage", "freeGames.highlight.buttonLabel", "freeGames.highlight.buttonLink", "freeGames.highlight.alignment", "popularGames.title", "popularGames.highlight.title", "popularGames.highlight.subtitle", "popularGames.highlight.background", "popularGames.highlight.floatImage", "popularGames.highlight.buttonLabel", "popularGames.highlight.buttonLink", "popularGames.highlight.alignment", "popularGames.games"]	[]	1	2021-01-31 22:10:22.357+00	2021-01-31 22:10:22.368+00
+103	plugins::content-manager.explorer.create	application::recommended.recommended	["section.title", "section.highlight.title", "section.highlight.subtitle", "section.highlight.background", "section.highlight.floatImage", "section.highlight.buttonLabel", "section.highlight.buttonLink", "section.highlight.alignment", "section.games"]	[]	1	2021-03-01 08:31:25.857+00	2021-03-01 08:31:25.867+00
+105	plugins::content-manager.explorer.delete	application::recommended.recommended	\N	[]	1	2021-03-01 08:31:25.859+00	2021-03-01 08:31:25.868+00
+104	plugins::content-manager.explorer.read	application::recommended.recommended	["section.title", "section.highlight.title", "section.highlight.subtitle", "section.highlight.background", "section.highlight.floatImage", "section.highlight.buttonLabel", "section.highlight.buttonLink", "section.highlight.alignment", "section.games"]	[]	1	2021-03-01 08:31:25.859+00	2021-03-01 08:31:25.869+00
 \.
 
 
@@ -6639,6 +6764,8 @@ COPY public.upload_file_morph (id, upload_file_id, related_id, related_type, fie
 823	823	130	games	gallery	1
 840	840	147	games	gallery	2
 853	854	135	games	gallery	4
+2501	2395	7	components_page_highlights	background	1
+2502	2394	7	components_page_highlights	floatImage	1
 721	721	111	games	cover	1
 723	723	103	games	gallery	4
 729	729	148	games	gallery	4
@@ -8353,6 +8480,7 @@ COPY public."users-permissions_permission" (id, type, controller, action, enable
 228	wysiwyg	wysiwyg	index	f		1	\N	\N
 229	application	banner	count	f		2	\N	\N
 239	application	banner	update	f		1	\N	\N
+247	application	recommended	delete	f		1	\N	\N
 3	content-manager	collection-types	create	f		1	\N	\N
 4	content-manager	collection-types	create	f		2	\N	\N
 13	content-manager	collection-types	publish	f		1	\N	\N
@@ -8392,6 +8520,7 @@ COPY public."users-permissions_permission" (id, type, controller, action, enable
 227	wysiwyg	wysiwyg	index	f		2	\N	\N
 233	application	banner	delete	f		1	\N	\N
 224	application	game	populate	t		2	\N	\N
+248	application	recommended	delete	f		2	\N	\N
 5	content-manager	collection-types	delete	f		1	\N	\N
 12	content-manager	collection-types	previewmanyrelations	f		2	\N	\N
 24	content-manager	components	updatecomponentconfiguration	f		2	\N	\N
@@ -8411,6 +8540,7 @@ COPY public."users-permissions_permission" (id, type, controller, action, enable
 183	application	developer	delete	f		1	\N	\N
 209	application	game	find	t		2	\N	\N
 231	application	banner	create	f		1	\N	\N
+250	application	recommended	find	f		1	\N	\N
 6	content-manager	collection-types	delete	f		2	\N	\N
 18	content-manager	collection-types	update	f		2	\N	\N
 27	content-manager	content-types	findcontenttypes	f		1	\N	\N
@@ -8430,6 +8560,7 @@ COPY public."users-permissions_permission" (id, type, controller, action, enable
 184	application	developer	delete	f		2	\N	\N
 210	application	game	find	f		1	\N	\N
 230	application	banner	count	f		1	\N	\N
+249	application	recommended	find	t		2	\N	\N
 7	content-manager	collection-types	find	f		1	\N	\N
 19	content-manager	components	findcomponentconfiguration	f		1	\N	\N
 26	content-manager	content-types	findcontenttypeconfiguration	f		2	\N	\N
@@ -8450,6 +8581,7 @@ COPY public."users-permissions_permission" (id, type, controller, action, enable
 211	application	game	findone	f		1	\N	\N
 232	application	banner	create	f		2	\N	\N
 240	application	banner	update	f		2	\N	\N
+251	application	recommended	update	f		1	\N	\N
 8	content-manager	collection-types	find	f		2	\N	\N
 15	content-manager	collection-types	unpublish	f		1	\N	\N
 29	content-manager	content-types	updatecontenttypeconfiguration	f		1	\N	\N
@@ -8470,6 +8602,7 @@ COPY public."users-permissions_permission" (id, type, controller, action, enable
 186	application	developer	find	t		2	\N	\N
 212	application	game	findone	t		2	\N	\N
 234	application	banner	delete	f		2	\N	\N
+252	application	recommended	update	f		2	\N	\N
 9	content-manager	collection-types	findone	f		1	\N	\N
 16	content-manager	collection-types	update	f		1	\N	\N
 28	content-manager	content-types	findcontenttypes	f		2	\N	\N
@@ -8630,28 +8763,28 @@ SELECT pg_catalog.setval('public.components_page_buttons_id_seq', 3, true);
 -- Name: components_page_highlights_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
 --
 
-SELECT pg_catalog.setval('public.components_page_highlights_id_seq', 6, true);
+SELECT pg_catalog.setval('public.components_page_highlights_id_seq', 7, true);
 
 
 --
 -- Name: components_page_popular_games__games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
 --
 
-SELECT pg_catalog.setval('public.components_page_popular_games__games_id_seq', 8, true);
+SELECT pg_catalog.setval('public.components_page_popular_games__games_id_seq', 17, true);
 
 
 --
 -- Name: components_page_popular_games_components_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
 --
 
-SELECT pg_catalog.setval('public.components_page_popular_games_components_id_seq', 2, true);
+SELECT pg_catalog.setval('public.components_page_popular_games_components_id_seq', 3, true);
 
 
 --
 -- Name: components_page_popular_games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
 --
 
-SELECT pg_catalog.setval('public.components_page_popular_games_id_seq', 1, true);
+SELECT pg_catalog.setval('public.components_page_popular_games_id_seq', 2, true);
 
 
 --
@@ -8679,7 +8812,7 @@ SELECT pg_catalog.setval('public.components_page_sections_id_seq', 4, true);
 -- Name: core_store_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
 --
 
-SELECT pg_catalog.setval('public.core_store_id_seq', 44, true);
+SELECT pg_catalog.setval('public.core_store_id_seq', 46, true);
 
 
 --
@@ -8739,6 +8872,20 @@ SELECT pg_catalog.setval('public.publishers_id_seq', 187, true);
 
 
 --
+-- Name: recommendeds_components_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
+--
+
+SELECT pg_catalog.setval('public.recommendeds_components_id_seq', 1, true);
+
+
+--
+-- Name: recommendeds_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
+--
+
+SELECT pg_catalog.setval('public.recommendeds_id_seq', 1, true);
+
+
+--
 -- Name: strapi_administrator_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
 --
 
@@ -8749,7 +8896,7 @@ SELECT pg_catalog.setval('public.strapi_administrator_id_seq', 1, true);
 -- Name: strapi_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
 --
 
-SELECT pg_catalog.setval('public.strapi_permission_id_seq', 102, true);
+SELECT pg_catalog.setval('public.strapi_permission_id_seq', 106, true);
 
 
 --
@@ -8784,14 +8931,14 @@ SELECT pg_catalog.setval('public.upload_file_id_seq', 2400, true);
 -- Name: upload_file_morph_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
 --
 
-SELECT pg_catalog.setval('public.upload_file_morph_id_seq', 2498, true);
+SELECT pg_catalog.setval('public.upload_file_morph_id_seq', 2502, true);
 
 
 --
 -- Name: users-permissions_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wonGames
 --
 
-SELECT pg_catalog.setval('public."users-permissions_permission_id_seq"', 246, true);
+SELECT pg_catalog.setval('public."users-permissions_permission_id_seq"', 252, true);
 
 
 --
@@ -9057,6 +9204,22 @@ ALTER TABLE ONLY public.publishers
 
 
 --
+-- Name: recommendeds_components recommendeds_components_pkey; Type: CONSTRAINT; Schema: public; Owner: wonGames
+--
+
+ALTER TABLE ONLY public.recommendeds_components
+    ADD CONSTRAINT recommendeds_components_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: recommendeds recommendeds_pkey; Type: CONSTRAINT; Schema: public; Owner: wonGames
+--
+
+ALTER TABLE ONLY public.recommendeds
+    ADD CONSTRAINT recommendeds_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: strapi_administrator strapi_administrator_email_unique; Type: CONSTRAINT; Schema: public; Owner: wonGames
 --
 
@@ -9206,6 +9369,14 @@ ALTER TABLE ONLY public.components_page_sections_components
 
 ALTER TABLE ONLY public.homes_components
     ADD CONSTRAINT home_id_fk FOREIGN KEY (home_id) REFERENCES public.homes(id) ON DELETE CASCADE;
+
+
+--
+-- Name: recommendeds_components recommended_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: wonGames
+--
+
+ALTER TABLE ONLY public.recommendeds_components
+    ADD CONSTRAINT recommended_id_fk FOREIGN KEY (recommended_id) REFERENCES public.recommendeds(id) ON DELETE CASCADE;
 
 
 --

@@ -8,27 +8,27 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "postinstall": "cd plugins/wysiwyg && npm install"
+    "postinstall": "cd plugins/wysiwyg && yarn"
   },
   "devDependencies": {},
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^20.0.0",
-    "@ckeditor/ckeditor5-react": "^2.1.0",
-    "jsdom": "^16.4.0",
-    "knex": "<0.20.0",
+    "@ckeditor/ckeditor5-build-classic": "^26.0.0",
+    "@ckeditor/ckeditor5-react": "^3.0.2",
+    "jsdom": "^16.5.0",
+    "knex": "0.95.2",
     "pg": "latest",
-    "slugify": "^1.4.6",
-    "strapi": "3.4.1",
-    "strapi-admin": "3.4.1",
-    "strapi-connector-bookshelf": "3.4.1",
-    "strapi-plugin-content-manager": "3.4.1",
-    "strapi-plugin-content-type-builder": "3.4.1",
-    "strapi-plugin-email": "3.4.1",
+    "slugify": "^1.4.7",
+    "strapi": "3.5.3",
+    "strapi-admin": "3.5.3",
+    "strapi-connector-bookshelf": "3.5.3",
+    "strapi-plugin-content-manager": "3.5.3",
+    "strapi-plugin-content-type-builder": "3.5.3",
+    "strapi-plugin-email": "3.5.3",
     "strapi-plugin-entity-relationship-chart": "^3.1.0",
-    "strapi-plugin-graphql": "3.4.1",
-    "strapi-plugin-upload": "3.4.1",
-    "strapi-plugin-users-permissions": "3.4.1",
-    "strapi-utils": "3.4.1"
+    "strapi-plugin-graphql": "3.5.3",
+    "strapi-plugin-upload": "3.5.3",
+    "strapi-plugin-users-permissions": "3.5.3",
+    "strapi-utils": "3.5.3"
   },
   "author": {
     "name": "A Strapi developer"

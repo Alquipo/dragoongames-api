@@ -8,8 +8,8 @@
     "description": "CKEditor to rich text fields."
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^24.0.0",
-    "@ckeditor/ckeditor5-react": "^3.0.0"
+    "@ckeditor/ckeditor5-build-classic": "^26.0.0",
+    "@ckeditor/ckeditor5-react": "^3.0.2"
   },
   "author": {
     "name": "A Strapi developer",

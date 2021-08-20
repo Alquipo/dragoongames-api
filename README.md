@@ -1,5 +1,5 @@
 <h1 align="center">
-🚧 WonGames API  | Em Construção 🚧
+WonGames API 
 </h1>
 
 ## 🚀 Como rodar este projeto
@@ -20,15 +20,15 @@ $ cd wongames-api
 
 ```bash
 # Montando a imagem no docker
-$ cd docker
-$ docker-compose up
+$ docker pull alquipo/wongames-database:latest
+
 
 # Após montar a imagem restaura o dump
 $ cat dump_01-02-2021_15_38_12.sql | docker exec -i wongames-api_postgres_1 psql -U wonGames -d wonGames
 
 ```
 
-### 🏦 populando o banco de dados(opcional 2)
+### 🏦 Populando o banco de dados(opcional 2)
 
 ```bash
 # Montando a imagem no docker

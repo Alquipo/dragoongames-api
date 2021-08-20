@@ -8,20 +8,12 @@ import React, { memo } from "react";
 import { FormattedMessage } from "react-intl";
 import PageTitle from "../../components/PageTitle";
 
-import {
-  ALink,
-  Block,
-  Container,
-  LinkWrapper,
-  P,
-  Separator,
-} from "./components";
+import { Block, Container, LinkWrapper, P, Separator } from "./components";
 import SocialLink from "./SocialLink";
 
 const FIRST_BLOCK_LINKS = [
   {
-    link:
-      "https://strapi.io/documentation/v3.x/getting-started/quick-start.html#_4-create-a-category-content-type",
+    link: "https://strapi.io/documentation/v3.x/getting-started/quick-start.html#_4-create-a-category-content-type",
     contentId: "app.components.BlockLink.documentation.content",
     titleId: "app.components.BlockLink.documentation",
   },
@@ -35,15 +27,15 @@ const FIRST_BLOCK_LINKS = [
 const SOCIAL_LINKS = [
   {
     name: "GitHub",
-    link: "https://github.com/React-avancado/",
+    link: "https://github.com/Alquipo/wongames-api",
   },
   {
-    name: "Slack",
-    link: "https://bit.ly/will-slack",
+    name: "Forum",
+    link: "https://www.linkedin.com/in/alquiponeto/",
   },
   {
     name: "Twitter",
-    link: "https://twitter.com/Willian_Justen",
+    link: "https://twitter.com/alquiponeto",
   },
 ];
 
@@ -94,13 +86,6 @@ const HomePage = () => {
                 Em caso de dúvidas e ou sugestões, só ir em algum de nossos
                 links =)
               </P>
-              <ALink
-                rel="noopener noreferrer"
-                href="https://reactavancado.com.br"
-                target="_blank"
-              >
-                Veja o nosso planejamento de módulos
-              </ALink>
 
               <Separator style={{ marginTop: 18 }} />
               <div

@@ -1,5 +1,5 @@
 <p align="center">
-  <img  alt="Dragoon Games Store" title="Draggon Games Store" src=".github/readme/logo-full.svg" />
+  <img  alt="Dragoon Games Store" title="Draggon Games Store" src=".github/readme/logo-full-dark.svg" />
 </p>
 
 <h1 align="center">

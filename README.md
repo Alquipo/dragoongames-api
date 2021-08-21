@@ -45,7 +45,11 @@ Aplicação está completa com autenticação, compras de jogos, cadastro de jog
 
 ## 🚀 Como rodar este projeto
 
-Para clonar e executar este aplicativo, você precisará de [Git](https://git-scm.com) e [NodeJs](https://nodejs.org/en/) Instalado em seu computador.
+Para clonar e executar este aplicativo, você precisará de [Git](https://git-scm.com), [NodeJs](https://nodejs.org/en/) e [Postgres](https://www.postgresql.org/) Instalado em seu computador.
+
+Esse projeto usa PostgresSQL como banco de dados, instale em seu computador ou use uma imagem do [Docker](https://www.docker.com/) para rodar o projeto.
+
+Para configurar o Banco de dados vá para a pasta `config/database.js` e edite o arquivo.
 
 ## 🎨 Layout
 
@@ -101,6 +105,7 @@ $ yarn install
 $ yarn develop
 
 # O servidor iniciará na porta:1337 - acesse http://localhost:1337/admin
+# GraphQL playground para testar as queries: http://localhost:1337/graphql
 
 # Verifique o arquivo em config > database.js (caso tenha necessidade pode alterar os dados do banco de dados)
 ```

@@ -1,5 +1,5 @@
 <p align="center">
-  <img  alt="Dragoon Games Store" title="Draggon Games Store" src=".github/readme/logo-full-dark.svg" />
+  <img  alt="Dragoon Games Store" title="Dragoon Games Store" src=".github/readme/logo-full-dark.svg" />
 </p>
 
 <h1 align="center">
@@ -25,7 +25,7 @@ Dragoon Games Store API
   <img alt="CI Workflow" src="https://github.com/Alquipo/dragoongames-api/workflows/ci/badge.svg?color=blue">
 
   <img alt="Heroku Status" src="https://heroku-badge.herokuapp.com/?app=dragoongames">
- 
+
 </p>
 
 <p align="center">

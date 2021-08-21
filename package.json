@@ -1,8 +1,8 @@
 {
-  "name": "api",
+  "name": "dragoongames-api",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Dragoon Games Store API",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",

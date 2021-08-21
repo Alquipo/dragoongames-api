@@ -34,6 +34,10 @@ Dragoon Games Store API
    <a target="_blank" href="https://stripe.com/br">
     <img alt="Strapi" src="https://img.shields.io/static/v1?color=blue&label=Stripe&message=JS&?style=plastic&logo=Stripe">
   </a>
+
+   <a target="_blank" href="https://www.postgresql.org/">
+    <img alt="Strapi" src="https://img.shields.io/static/v1?color=blue&label=Postgres&message=JS&?style=plastic&logo=postgresql">
+  </a>
  
 </p>
 

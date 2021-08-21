@@ -17,8 +17,8 @@ const A = styled.a`
 
     &:hover {
       color: ${theme.main.colors.white};
-      background: ${theme.main.colors.won.blue};
-      border-left: 0.3rem solid ${theme.main.colors.won.orange};
+      background: ${theme.main.colors.dragoon.blue};
+      border-left: 0.3rem solid ${theme.main.colors.dragoon.orange};
       text-decoration: none;
     }
 
@@ -33,7 +33,7 @@ const A = styled.a`
 
     &.linkActive {
       color: white !important;
-      border-left: 0.3rem solid ${theme.main.colors.won.orange};
+      border-left: 0.3rem solid ${theme.main.colors.dragoon.orange};
     }
   `}
 `;

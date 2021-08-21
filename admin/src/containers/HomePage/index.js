@@ -27,7 +27,7 @@ const FIRST_BLOCK_LINKS = [
 const SOCIAL_LINKS = [
   {
     name: "GitHub",
-    link: "https://github.com/Alquipo/wongames-api",
+    link: "https://github.com/Alquipo/dragoongames-api",
   },
   {
     name: "Forum",
@@ -45,11 +45,14 @@ const HomePage = () => {
       <FormattedMessage id="HomePage.helmet.title">
         {(title) => <PageTitle title={title} />}
       </FormattedMessage>
-      <Container className="container-fluid">
+      <Container
+        className="container-fluid"
+        style={{ backgroundColor: "white" }}
+      >
         <div className="row">
           <div className="col-lg-8 col-md-12">
             <Block>
-              <h2 id="mainHeader">Bem vindo a Won Games!</h2>
+              <h2 id="mainHeader">Bem vindo a Dragoon Games Store!</h2>
               <P>
                 Ao lado você pode inserir diferentes jogos, categorias e
                 publishers para a nossa maravilhosa loja de jogos!{" "}

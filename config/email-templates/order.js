@@ -1,7 +1,7 @@
-const subject = 'Order at Won Games'
+const subject = "Order at Dragoon Games";
 
 const text = `
-  Hi <%= user.username %>, thanks for buying at Won Games!
+  Hi <%= user.username %>, thanks for buying at Dragoon Games!
   Follow the info of your order:
 
   Card Information:
@@ -16,10 +16,10 @@ const text = `
   <% _.forEach(games, function(game) { %>
     <%= game.name %> - Price: $<%= game.price %>
   <% }); %>
-`
+`;
 
 const html = `
-  <p>Hi <%= user.username %>, thanks for buying at Won Games!</p>
+  <p>Hi <%= user.username %>, thanks for buying at Dragoon Games!</p>
   <p>Follow the info of your order:</p>
 
   <h3>Card Information</h3>
@@ -40,10 +40,10 @@ const html = `
       <li><a href="http://localhost:3000/game/<%= game.slug %>"><%= game.name %></a> - Price: <strong>$<%= Number(game.price).toFixed(2) %></strong></li>
     <% }); %>
   </ul>
-`
+`;
 
 module.exports = {
   subject,
   text,
-  html
-}
+  html,
+};

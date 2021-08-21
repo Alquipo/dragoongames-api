@@ -10,8 +10,8 @@ module.exports = ({ env }) => ({
       },
     },
     settings: {
-      defaultFrom: "wongames@wongames.com",
-      defaultReplyTo: "contact@wongames.com",
+      defaultFrom: "no-reply@dragoongames.com",
+      defaultReplyTo: "contact@dragoongames.com",
     },
   },
   upload: {

@@ -8,12 +8,12 @@ const Wrapper = styled.div`
     left: 0;
     height: 100vh;
     width: ${theme.main.sizes.leftMenu.width};
-    background: ${theme.main.colors.won.blueLight};
+    background: ${theme.main.colors.dragoon.blueLight};
 
     /* scrollbar overrides */
     * {
       ::-webkit-scrollbar {
-        width: 7px;
+        width: 5px;
       }
 
       ::-webkit-scrollbar-track,
@@ -22,11 +22,7 @@ const Wrapper = styled.div`
       }
 
       ::-webkit-scrollbar-thumb {
-        background-color: ${theme.main.colors.leftMenu["title-color"]};
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background-color: ${theme.main.colors.leftMenu["link-color"]};
+        background-color: ${theme.main.colors.dragoon.primary};
       }
 
       /* firefox */

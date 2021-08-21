@@ -1,3 +1,7 @@
+<p align="center">
+  <img  alt="Dragoon Games Store" title="Draggon Games Store" src=".github/readme/logo-full.svg" />
+</p>
+
 <h1 align="center">
 Dragoon Games Store API 
 </h1>

@@ -39,6 +39,8 @@ const SOCIAL_LINKS = [
   },
 ];
 
+document.body.style.backgroundColor = "#fff";
+
 const HomePage = () => {
   return (
     <>

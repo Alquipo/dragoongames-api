@@ -22,23 +22,26 @@ Dragoon Games Store API
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen?color=blue">
 
-<img alt="CI Workflow" src="https://github.com/Alquipo/dragoongames-api/workflows/ci/badge.svg?color=blue">
+  <img alt="CI Workflow" src="https://github.com/Alquipo/dragoongames-api/workflows/ci/badge.svg?color=blue">
+
+  <img alt="Heroku Status" src="https://heroku-badge.herokuapp.com/?app=dragoongames">
+ 
 </p>
 
 <p align="center">
 
   <a target="_blank" href="https://strapi.io/">
-    <img alt="Strapi" src="https://img.shields.io/static/v1?color=blue&label=Strapi&message=JS&?style=plastic&logo=Strapi">
+    <img alt="Strapi" src="https://img.shields.io/badge/strapi-%232E7EEA.svg?style=for-the-badge&logo=strapi&logoColor=white">
   </a>
 
    <a target="_blank" href="https://stripe.com/br">
-    <img alt="Strapi" src="https://img.shields.io/static/v1?color=blue&label=Stripe&message=JS&?style=plastic&logo=Stripe">
+    <img alt="Stripe" src="https://img.shields.io/badge/stripe-%232E7EEA.svg?style=for-the-badge&logo=stripe&logoColor=white">
   </a>
 
    <a target="_blank" href="https://www.postgresql.org/">
-    <img alt="Strapi" src="https://img.shields.io/static/v1?color=blue&label=Postgres&message=JS&?style=plastic&logo=postgresql">
+    <img alt="Postgres" src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white">
   </a>
- 
+
 </p>
 
 ## 🚀 Sobre o Projeto

@@ -1,5 +1,5 @@
 <h1 align="center">
-WonGames API 
+Dragoon Games Store API 
 </h1>
 
 ## 🚀 Como rodar este projeto
@@ -10,17 +10,17 @@ Para clonar e executar este aplicativo, você precisará de [Git](https://git-sc
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/Alquipo/wongames-api
+$ git clone https://github.com/Alquipo/dragoongames-api
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd wongames-api
+$ cd dragoongames-api
 ```
 
 ### 🏦 Recuperando o Banco de Dados (opcional 1)
 
 ```bash
 # Montando a imagem no docker
-$ docker pull alquipo/wongames-database:latest
+$ docker pull alquipo/dragoongames-database:latest
 
 
 # Após montar a imagem restaura o dump

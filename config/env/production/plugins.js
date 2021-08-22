@@ -26,4 +26,8 @@ module.exports = ({ env }) => ({
       delete: {},
     },
   },
+  meilisearch: {
+    host: env("MEILISEARCH_HOST"),
+    api_key: env("MEILISEARCH_KEY"),
+  },
 });

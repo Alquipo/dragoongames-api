@@ -50,13 +50,7 @@ Dragoon Games Store é um e-commerce completo para comprar jogos, nesse reposit�
 
 Aplicação está completa com autenticação, compras de jogos, cadastro de jogos, wishlist e cadastro de usuário
 
-## 🚀 Como rodar este projeto
-
-Para clonar e executar este aplicativo, você precisará de [Git](https://git-scm.com), [NodeJs](https://nodejs.org/en/) e [Postgres](https://www.postgresql.org/) Instalado em seu computador.
-
-Esse projeto usa PostgresSQL como banco de dados, instale em seu computador ou use uma imagem do [Docker](https://www.docker.com/) para rodar o projeto.
-
-Para configurar o Banco de dados vá para a pasta `config/database.js` e edite o arquivo.
+Para ver a pagina Web desenvolvida com NextJS acesse o [Github] e [DragoonGameStore]
 
 ## 🎨 Layout
 
@@ -91,6 +85,12 @@ Para configurar o Banco de dados vá para a pasta `config/database.js` e edite o
 - `build`: Cria a Build do projeto
 
 ## 🚀 Como rodar este projeto
+
+Para clonar e executar este aplicativo, você precisará de [Git](https://git-scm.com), [NodeJs](https://nodejs.org/en/) e [Postgres](https://www.postgresql.org/) Instalado em seu computador.
+
+Esse projeto usa PostgresSQL como banco de dados, instale em seu computador ou use uma imagem do [Docker](https://www.docker.com/) para rodar o projeto.
+
+Para configurar o Banco de dados vá para a pasta `config/database.js` e edite o arquivo.
 
 ### 🌀 Clonando o repositório
 

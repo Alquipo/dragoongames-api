@@ -42,6 +42,10 @@ Dragoon Games Store API
     <img alt="Postgres" src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white">
   </a>
 
+  <a target="_blank" href="https://storybook.js.org/">
+    <img alt="GraphQL" src="https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white">
+  </a>
+
 </p>
 
 ## 🚀 Sobre o Projeto
@@ -50,7 +54,7 @@ Dragoon Games Store é um e-commerce completo para comprar jogos, nesse reposit�
 
 Aplicação está completa com autenticação, compras de jogos, cadastro de jogos, wishlist e cadastro de usuário
 
-Para ver a pagina Web desenvolvida com NextJS acesse o [Github] e [DragoonGameStore]
+Para ver a pagina Web desenvolvida com NextJS acesse o [Github](https://github.com/Alquipo/dragoongames-web) e [DragoonGameStore](https://dragoongames.alquipo.dev/)
 
 ## 🎨 Layout
 

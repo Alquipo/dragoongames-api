@@ -1,10 +1,14 @@
-module.exports = ({env}) => ({
+module.exports = ({ env }) => ({
   email: {
-    provider: 'nodemailer',
+    provider: "nodemailer",
     providerOptions: {
       host: "localhost",
       port: 1025,
-      ignoreTLS: true
-    }
-  }
-})
+      ignoreTLS: true,
+    },
+  },
+  meilisearch: {
+    host: "http://localhost:7700",
+    api_key: "masterKey",
+  },
+});

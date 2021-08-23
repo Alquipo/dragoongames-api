@@ -50,7 +50,7 @@ Dragoon Games Store API
 
 ## 🚀 Sobre o Projeto
 
-Dragoon Games Store é um e-commerce completo para comprar jogos, nesse repositório estão os arquivos do Back-end da Loja, Aplicação foi desenvolvida usando Strapi CMS, Stripe como API de pagamentos, Postgres como banco de dados e o Crawler para extrair dados dos jogos foi feito do site da [GOG.com](https://www.gog.com/).
+Dragoon Games Store é um e-commerce completo para comprar jogos, nesse repositório estão os arquivos do Back-end da Loja, Aplicação foi desenvolvida usando Strapi CMS, Stripe como API de pagamentos, Postgres como banco de dados e Web Scrapping para extrair dados dos jogos foi feito do site da [GOG.com](https://www.gog.com/).
 
 Aplicação está completa com autenticação, compras de jogos, cadastro de jogos, wishlist e cadastro de usuário
 

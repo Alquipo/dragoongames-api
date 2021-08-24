@@ -10,8 +10,8 @@ module.exports = ({ env }) => ({
       },
     },
     settings: {
-      defaultFrom: "no-reply@dragoongames.com",
-      defaultReplyTo: "contact@dragoongames.com",
+      defaultFrom: "no-reply-dragoongames@alquipo.dev",
+      defaultReplyTo: "alquiponeto@outlook.com.br",
     },
   },
   upload: {
